@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTBB Safeguarding — Self-Declaration</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a3a4a;--teal:#2a7f6f;--teal-light:#3a9f8a;--teal-pale:#e8f5f2;--gold:#c8963a;--gold-pale:#fdf6ec;--warm:#fafaf8;--text:#2c3e35;--muted:#6b7c74;--border:#d4e4df;--green:#1e7d52;--green-pale:#f0faf5;--red:#c0392b;--red-pale:#fef2f2}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);line-height:1.7}
+.form-header{background:var(--navy);padding:32px 32px 28px;text-align:center}
+.form-header-badge{display:inline-block;background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.75);font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:14px}
+.form-header h1{font-family:'Lora',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.form-header p{font-size:13px;color:rgba(255,255,255,0.6);max-width:440px;margin:0 auto}
+.container{max-width:640px;margin:0 auto;padding:0 20px 52px}
+.intro-callout{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:14px 18px;margin:28px 0 24px;font-size:13.5px;color:var(--navy);line-height:1.6}
+.intro-callout strong{color:var(--teal)}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.form-card-header{background:var(--navy);padding:14px 20px}
+.form-card-header h2{font-size:13px;font-weight:500;color:#fff;display:flex;align-items:center;gap:8px}
+.form-card-header h2::before{content:attr(data-num);width:22px;height:22px;border-radius:50%;background:rgba(125,212,192,0.25);color:#7dd4c0;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.form-card-body{padding:20px}
+.field-group{margin-bottom:16px}
+.field-group:last-child{margin-bottom:0}
+.field-label{display:block;font-size:12.5px;font-weight:500;color:var(--navy);margin-bottom:5px}
+.field-label sup{color:var(--red);font-size:10px}
+.field-input{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text);background:#fff;outline:none;transition:border-color 0.15s;appearance:none}
+.field-input:focus{border-color:var(--teal)}
+.field-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+select.field-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7c74' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.decl-section-label{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.decl-list{display:flex;flex-direction:column;gap:8px}
+.decl-item{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;background:var(--warm);border:1px solid var(--border);border-radius:8px;transition:border-color 0.15s,background 0.15s;cursor:pointer}
+.decl-item:hover{border-color:var(--teal-light);background:var(--teal-pale)}
+.decl-item.checked{border-color:var(--teal);background:var(--teal-pale)}
+.decl-item input[type=checkbox]{margin-top:2px;flex-shrink:0;accent-color:var(--teal);width:15px;height:15px;cursor:pointer}
+.decl-item label{font-size:13px;color:var(--text);cursor:pointer;line-height:1.55}
+.decl-item.checked label{color:var(--navy)}
+.comments-area{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text);min-height:90px;resize:vertical;outline:none;transition:border-color 0.15s}
+.comments-area:focus{border-color:var(--teal)}
+.error-msg{font-size:12px;color:var(--red);margin-top:5px;display:none}
+.submit-section{text-align:center;margin:24px 0}
+.submit-btn{background:var(--teal);color:#fff;border:none;padding:13px 36px;border-radius:100px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.15s;width:100%}
+.submit-btn:hover{background:var(--teal-light)}
+.submit-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center;line-height:1.6}
+.success-box{display:none;background:var(--navy);border-radius:14px;padding:40px 28px;text-align:center;margin:32px 0}
+.success-box.show{display:block}
+.success-icon{font-size:44px;margin-bottom:16px}
+.success-box h2{font-family:'Lora',serif;color:#fff;font-size:24px;margin-bottom:10px}
+.success-box p{font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:8px;max-width:380px;margin-left:auto;margin-right:auto}
+.success-ref{font-size:11px;color:rgba(255,255,255,0.35);margin-top:16px}
+@media(max-width:500px){.field-row-2{grid-template-columns:1fr}.form-header{padding:24px 20px}}
+</style>
+</head>
+<body>
+
+<div class="form-header">
+  <div class="form-header-badge">Holy Trinity Bukit Bintang</div>
+  <h1>Safeguarding Self-Declaration</h1>
+  <p>Complete this form to confirm you have finished all modules and quizzes. This is your official course sign-off.</p>
+</div>
+
+<div class="container">
+  <div class="intro-callout"><strong>Almost there!</strong> Well done for completing the HTBB Safeguarding Training. Please fill in all fields below and tick each declaration box to officially sign off. Your response is sent directly to the HTBB Safeguarding Team at <a href="mailto:safeguarding@htbb.org" style="color:var(--teal)">safeguarding@htbb.org</a> or call <a href="tel:+60195556916" style="color:var(--teal)">+6019-555 6916</a>.</div>
+
+  <div id="main-form">
+
+    <!-- SECTION 1 -->
+    <div class="form-card">
+      <div class="form-card-header"><h2 data-num="1">Your details</h2></div>
+      <div class="form-card-body">
+        <div class="field-row-2">
+          <div class="field-group">
+            <label class="field-label" for="fname">Full name <sup>*</sup></label>
+            <input class="field-input" type="text" id="fname" placeholder="Your full name">
+            <div class="error-msg" id="err-fname">Please enter your full name.</div>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="email">Email address <sup>*</sup></label>
+            <input class="field-input" type="email" id="email" placeholder="your@email.com">
+            <div class="error-msg" id="err-email">Please enter a valid email.</div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="phone">Phone number</label>
+          <input class="field-input" type="text" id="phone" placeholder="e.g. +60 12-345 6789">
+        </div>
+        <div class="field-row-2">
+          <div class="field-group">
+            <label class="field-label" for="ministry">Ministry / Team <sup>*</sup></label>
+            <select class="field-input" id="ministry">
+              <option value="">— Select your ministry —</option>
+              <option>Children's Ministry</option>
+              <option>Youth Ministry</option>
+              <option>Connect Groups</option>
+              <option>Social Action / Outreach</option>
+              <option>Worship Team</option>
+              <option>Welcome Team</option>
+              <option>Alpha Team</option>
+              <option>Other</option>
+            </select>
+            <div class="error-msg" id="err-ministry">Please select your ministry.</div>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="role">Your role <sup>*</sup></label>
+            <input class="field-input" type="text" id="role" placeholder="e.g. Volunteer, Team Leader">
+            <div class="error-msg" id="err-role">Please enter your role.</div>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="date">Date of completion <sup>*</sup></label>
+          <input class="field-input" type="date" id="date">
+          <div class="error-msg" id="err-date">Please select the date.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="form-card">
+      <div class="form-card-header"><h2 data-num="2">Declaration</h2></div>
+      <div class="form-card-body">
+        <div class="decl-section-label">Please tick each statement to confirm</div>
+        <div class="decl-list" id="decl-list">
+          <div class="decl-item" id="di1"><input type="checkbox" id="d1" onchange="tick('di1',this)"><label for="d1">I have watched all video lessons and completed all modules in the HTBB Safeguarding Training course.</label></div>
+          <div class="decl-item" id="di2"><input type="checkbox" id="d2" onchange="tick('di2',this)"><label for="d2">I have completed all quizzes — Safeguarding Scenario 1 (Jasmine & Arthur), Scenario 2 (Daniel), and Scenario 3 (Brandon).</label></div>
+          <div class="decl-item" id="di3"><input type="checkbox" id="d3" onchange="tick('di3',this)"><label for="d3">I understand what safeguarding means in a church context and why it is important at HTBB.</label></div>
+          <div class="decl-item" id="di4"><input type="checkbox" id="d4" onchange="tick('di4',this)"><label for="d4">I understand how to recognise different forms of abuse including physical, emotional, and psychological abuse.</label></div>
+          <div class="decl-item" id="di5"><input type="checkbox" id="d5" onchange="tick('di5',this)"><label for="d5">I know how to respond to a safeguarding disclosure and understand I must report concerns to the HTBB Safeguarding Officer within 24 hours.</label></div>
+          <div class="decl-item" id="di6"><input type="checkbox" id="d6" onchange="tick('di6',this)"><label for="d6">I understand the safeguarding practices required when working with children — including supervision, physical contact boundaries, and communication guidelines.</label></div>
+          <div class="decl-item" id="di7"><input type="checkbox" id="d7" onchange="tick('di7',this)"><label for="d7">I understand how to serve vulnerable adults safely, including maintaining healthy boundaries and avoiding dependency relationships.</label></div>
+          <div class="decl-item" id="di8"><input type="checkbox" id="d8" onchange="tick('di8',this)"><label for="d8">I commit to applying these safeguarding principles in my ministry role at HTBB and will raise any concerns with the Safeguarding Officer promptly.</label></div>
+        </div>
+        <div class="error-msg" id="err-decl" style="display:none;margin-top:10px">Please confirm all declarations before submitting.</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="form-card">
+      <div class="form-card-header"><h2 data-num="3">Additional comments (optional)</h2></div>
+      <div class="form-card-body">
+        <div class="field-group">
+          <label class="field-label" for="comments">Questions, concerns, or feedback about this training?</label>
+          <textarea class="comments-area" id="comments" placeholder="Share any questions or feedback here..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-section">
+      <button class="submit-btn" onclick="submitForm()">Submit Self-Declaration</button>
+      <p class="submit-note">By submitting, you confirm that all information is accurate and that you have<br>completed the HTBB Safeguarding Training in full.</p>
+    </div>
+
+  </div>
+
+  <div class="success-box" id="success-box">
+    <div class="success-icon">✅</div>
+    <h2>Declaration Submitted!</h2>
+    <p>Thank you, <strong id="success-name"></strong>. Your self-declaration has been recorded. The HTBB Safeguarding Team will be in touch if they have any follow-up questions.</p>
+    <p style="color:rgba(255,255,255,0.85);margin-top:10px">You have now officially completed the HTBB Safeguarding Training. Well done!</p>
+    <p class="success-ref" id="success-ref"></p>
+  </div>
+
+</div>
+
+<script>
+function tick(id, cb) {
+  document.getElementById(id).classList.toggle('checked', cb.checked);
+}
+
+function show(id, visible) {
+  document.getElementById(id).style.display = visible ? 'block' : 'none';
+}
+
+function submitForm() {
+  let ok = true;
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const ministry = document.getElementById('ministry').value;
+  const role = document.getElementById('role').value.trim();
+  const date = document.getElementById('date').value;
+
+  show('err-fname', !fname); if (!fname) ok = false;
+  show('err-email', !email || !email.includes('@')); if (!email || !email.includes('@')) ok = false;
+  show('err-ministry', !ministry); if (!ministry) ok = false;
+  show('err-role', !role); if (!role) ok = false;
+  show('err-date', !date); if (!date) ok = false;
+
+  const allTicked = ['d1','d2','d3','d4','d5','d6','d7','d8'].every(id => document.getElementById(id).checked);
+  show('err-decl', !allTicked); if (!allTicked) ok = false;
+
+  if (!ok) { window.scrollTo({top:0,behavior:'smooth'}); return; }
+
+  document.getElementById('main-form').style.display = 'none';
+  document.getElementById('success-name').textContent = fname;
+  const ref = 'HTBB-SG-' + Date.now().toString(36).toUpperCase();
+  document.getElementById('success-ref').textContent = `Reference: ${ref}  ·  Submitted: ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`;
+  const box = document.getElementById('success-box');
+  box.classList.add('show');
+  box.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

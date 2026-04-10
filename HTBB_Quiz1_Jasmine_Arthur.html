@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz: Safeguarding Scenario 1 — Jasmine & Arthur</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a3a4a; --teal: #2a7f6f; --teal-light: #3a9f8a; --teal-pale: #e8f5f2;
+    --gold: #c8963a; --gold-pale: #fdf6ec; --red-pale: #fef2f2; --red: #c0392b;
+    --green-pale: #f0faf5; --green: #1e7d52;
+    --warm-white: #fafaf8; --text: #2c3e35; --text-muted: #6b7c74; --border: #d4e4df;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.7; }
+  .header { background: var(--navy); padding: 36px 40px 32px; }
+  .header-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+  .header h1 { font-family: 'Lora', serif; font-size: clamp(20px, 4vw, 28px); font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .header p { color: rgba(255,255,255,0.65); font-size: 14px; }
+  .container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+  .scenario-box { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; margin: 36px 0 32px; }
+  .scenario-box h2 { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .scenario-box h2::before { content: '📋'; font-size: 16px; }
+  .scenario-box p { font-size: 14.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.75; }
+  .scenario-box p:last-child { margin-bottom: 0; }
+  .scenario-box strong { color: var(--navy); font-weight: 600; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; padding-top: 8px; }
+  .section-title { font-family: 'Lora', serif; font-size: 19px; font-weight: 600; color: var(--navy); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .question-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .question-num { font-size: 11px; font-weight: 600; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .question-text { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 6px; }
+  .question-instruction { font-size: 12.5px; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; background: var(--warm-white); }
+  .option:hover { border-color: var(--teal-light); background: var(--teal-pale); }
+  .option input { margin-top: 3px; flex-shrink: 0; accent-color: var(--teal); width: 16px; height: 16px; }
+  .option label { font-size: 14px; color: var(--text); cursor: pointer; line-height: 1.6; }
+  .option.correct { border-color: var(--green); background: var(--green-pale); }
+  .option.wrong { border-color: var(--red); background: var(--red-pale); }
+  .option.correct label { color: var(--green); font-weight: 500; }
+  .option.wrong label { color: var(--red); }
+  .feedback { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13.5px; line-height: 1.6; }
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--green-pale); color: var(--green); border: 1px solid #a8d5b5; }
+  .feedback.wrong-fb { background: var(--red-pale); color: var(--red); border: 1px solid #f5b7b1; }
+  .check-btn { margin-top: 14px; background: var(--teal); color: #fff; border: none; padding: 9px 22px; border-radius: 100px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+  .check-btn:hover { background: var(--teal-light); }
+  .check-btn:disabled { background: #ccc; cursor: default; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+  .score-banner { background: var(--navy); border-radius: 14px; padding: 28px; text-align: center; margin: 32px 0 52px; display: none; }
+  .score-banner.show { display: block; }
+  .score-banner h3 { font-family: 'Lora', serif; color: #fff; font-size: 22px; margin-bottom: 8px; }
+  .score-banner p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 16px; }
+  .score-number { font-family: 'Lora', serif; font-size: 48px; font-weight: 700; color: #7dd4c0; display: block; }
+  .submit-all-btn { background: var(--gold); color: #fff; border: none; padding: 12px 32px; border-radius: 100px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; margin: 8px 0 32px; display: block; width: 100%; transition: opacity 0.15s; }
+  .submit-all-btn:hover { opacity: 0.9; }
+  @media(max-width:500px) { .header { padding: 28px 20px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">HTBB Safeguarding Training</div>
+  <h1>Safeguarding Scenario 1<br>Jasmine & Arthur</h1>
+  <p>Read the scenario carefully, then answer all 9 questions below.</p>
+</div>
+
+<div class="container">
+
+  <!-- SCENARIO -->
+  <div class="scenario-box">
+    <h2>The Scenario</h2>
+    <p>You are a <strong>CHTBB micro-group leader</strong>. A CHTBB teacher in your group shares the following situation with you.</p>
+    <p>Recently, both of you noticed that a mother named <strong>Jasmine</strong> has started bringing her young son <strong>Arthur</strong>, who uses a wheelchair, to church.</p>
+    <p>After church one day, Jasmine approached the teacher and asked if they could speak privately. During the conversation, Jasmine became emotional and began to cry.</p>
+    <p>She shared that she has been feeling <strong>overwhelmed caring for Arthur</strong>. Her husband travels frequently for work and their marriage has been under strain.</p>
+    <p>Jasmine also shared something concerning. She said that <strong>last week her husband hit Arthur on the leg because Arthur would not go to sleep</strong>. She said this has happened <strong>a few times before</strong>. Arthur now has a <strong>small red bruise on his leg</strong>.</p>
+    <p>Jasmine also mentioned that her husband <strong>often shouts at her</strong>, and that she has been <strong>struggling to sleep because of stress</strong>.</p>
+    <p>The teacher is unsure what to do and asks for your thoughts.</p>
+  </div>
+
+  <!-- PART 1 -->
+  <div class="section-label">Part 1</div>
+  <div class="section-title">Recognising Abuse — Questions 1–6</div>
+
+  <!-- Q1 -->
+  <div class="question-card" id="q1">
+    <div class="question-num">Question 1</div>
+    <div class="question-text">The teacher asks what you think about Jasmine and her husband. What would be the most appropriate response?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">Share your personal opinion about them.</label></div>
+      <div class="option"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">Change the subject and ignore the situation.</label></div>
+      <div class="option"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">Explain that it is not your role to judge the people involved.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q1','c','It is not your role to judge. Your role is to listen, record facts accurately, and report to the Safeguarding Officer.')">Check Answer</button>
+    <div class="feedback" id="q1-fb"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="q2">
+    <div class="question-num">Question 2</div>
+    <div class="question-text">Becoming increasingly isolated and overwhelmed by caring responsibilities is a risk for:</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q2" id="q2a" value="a"><label for="q2a">Jasmine's husband</label></div>
+      <div class="option"><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">The church</label></div>
+      <div class="option"><input type="radio" name="q2" id="q2c" value="c"><label for="q2c">Arthur and Jasmine</label></div>
+      <div class="option"><input type="radio" name="q2" id="q2d" value="d"><label for="q2d">You</label></div>
+      <div class="option"><input type="radio" name="q2" id="q2e" value="e"><label for="q2e">Jasmine</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q2','e','Jasmine is the one who is isolated and overwhelmed. While Arthur is also at risk of harm, the question specifically refers to the risk of isolation and carer burnout, which applies to Jasmine.')">Check Answer</button>
+    <div class="feedback" id="q2-fb"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="q3">
+    <div class="question-num">Question 3</div>
+    <div class="question-text">Continued abuse and suffering is a risk for:</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q3" id="q3a" value="a"><label for="q3a">Jasmine's husband</label></div>
+      <div class="option"><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">The church</label></div>
+      <div class="option"><input type="radio" name="q3" id="q3c" value="c"><label for="q3c">Arthur and Jasmine</label></div>
+      <div class="option"><input type="radio" name="q3" id="q3d" value="d"><label for="q3d">You</label></div>
+      <div class="option"><input type="radio" name="q3" id="q3e" value="e"><label for="q3e">Jasmine</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q3','c','Both Arthur and Jasmine are at risk of continued harm — Arthur from physical abuse, and Jasmine from emotional abuse and her husband\'s shouting.')">Check Answer</button>
+    <div class="feedback" id="q3-fb"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="q4">
+    <div class="question-num">Question 4</div>
+    <div class="question-text">Is <strong>physical abuse</strong> a safeguarding concern in this situation?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">It may be a concern because Jasmine reported shouting.</label></div>
+      <div class="option"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">It is not a concern at present.</label></div>
+      <div class="option"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">It is a concern because Arthur has been deliberately hit.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q4','c','Yes — Arthur has been physically hit on multiple occasions and has a visible bruise. This is a clear concern of physical abuse and must be reported.')">Check Answer</button>
+    <div class="feedback" id="q4-fb"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="q5">
+    <div class="question-num">Question 5</div>
+    <div class="question-text">Is <strong>emotional or psychological abuse</strong> a concern in this situation?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Yes — Jasmine reports frequent shouting and emotional distress.</label></div>
+      <div class="option"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">No — shouting is not a safeguarding concern.</label></div>
+      <div class="option"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">No — there is no evidence of emotional harm.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q5','a','Yes. Frequent shouting directed at a family member is a form of emotional abuse. Jasmine is clearly experiencing distress as a result, which is a safeguarding concern.')">Check Answer</button>
+    <div class="feedback" id="q5-fb"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="q6">
+    <div class="question-num">Question 6</div>
+    <div class="question-text">What would be the <strong>best outcomes</strong> in this situation?</div>
+    <div class="question-instruction">Select ALL that apply</div>
+    <div class="options">
+      <div class="option"><input type="checkbox" id="q6a" value="a"><label for="q6a">Punish Jasmine's husband immediately.</label></div>
+      <div class="option"><input type="checkbox" id="q6b" value="b"><label for="q6b">Ensure the safety of Jasmine and Arthur.</label></div>
+      <div class="option"><input type="checkbox" id="q6c" value="c"><label for="q6c">Involve the Safeguarding Officer as soon as possible.</label></div>
+      <div class="option"><input type="checkbox" id="q6d" value="d"><label for="q6d">Protect the church's reputation so people think abuse does not happen here.</label></div>
+      <div class="option"><input type="checkbox" id="q6e" value="e"><label for="q6e">Support the family so they can receive appropriate help and care.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkCheckbox('q6',['b','c','e'],'The priority is the safety of Jasmine and Arthur, involving the Safeguarding Officer immediately, and ensuring the family receives appropriate support and care.')">Check Answer</button>
+    <div class="feedback" id="q6-fb"></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PART 2 -->
+  <div class="section-label">Part 2</div>
+  <div class="section-title">Responding to Disclosure — Questions 7–9</div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="q7">
+    <div class="question-num">Question 7</div>
+    <div class="question-text">What actions would be most appropriate in this situation?</div>
+    <div class="question-instruction">Select TWO answers</div>
+    <div class="options">
+      <div class="option"><input type="checkbox" id="q7a" value="a"><label for="q7a">Visit the family to investigate the situation yourself.</label></div>
+      <div class="option"><input type="checkbox" id="q7b" value="b"><label for="q7b">Decide not to take the matter further to avoid conflict.</label></div>
+      <div class="option"><input type="checkbox" id="q7c" value="c"><label for="q7c">Ensure Jasmine and Arthur continue to feel supported and welcome at church.</label></div>
+      <div class="option"><input type="checkbox" id="q7d" value="d"><label for="q7d">Report the concern to the Safeguarding Officer.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkCheckbox('q7',['c','d'],'You should report to the Safeguarding Officer and continue to support Jasmine and Arthur. Never investigate alone — this could put you and them at risk.')">Check Answer</button>
+    <div class="feedback" id="q7-fb"></div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="q8">
+    <div class="question-num">Question 8</div>
+    <div class="question-text">When preparing a written record for the Safeguarding Officer, what information should be included?</div>
+    <div class="question-instruction">Select THREE answers</div>
+    <div class="options">
+      <div class="option"><input type="checkbox" id="q8a" value="a"><label for="q8a">Who else may be aware of the situation.</label></div>
+      <div class="option"><input type="checkbox" id="q8b" value="b"><label for="q8b">Your personal interpretation of events.</label></div>
+      <div class="option"><input type="checkbox" id="q8c" value="c"><label for="q8c">The date and time of the conversation.</label></div>
+      <div class="option"><input type="checkbox" id="q8d" value="d"><label for="q8d">Your recommendation of what should happen next.</label></div>
+      <div class="option"><input type="checkbox" id="q8e" value="e"><label for="q8e">An accurate description of what was said, including exact wording where possible.</label></div>
+    </div>
+    <button class="check-btn" onclick="checkCheckbox('q8',['a','c','e'],'Records should be factual and objective: who else knows, when it happened, and what was said exactly. Do not include personal interpretations or recommendations.')">Check Answer</button>
+    <div class="feedback" id="q8-fb"></div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="question-card" id="q9">
+    <div class="question-num">Question 9</div>
+    <div class="question-text">How quickly should this concern be reported to the Safeguarding Officer?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q9" id="q9a" value="a"><label for="q9a">Within 2–4 days</label></div>
+      <div class="option"><input type="radio" name="q9" id="q9b" value="b"><label for="q9b">Within 24 hours</label></div>
+      <div class="option"><input type="radio" name="q9" id="q9c" value="c"><label for="q9c">Only if the situation happens again</label></div>
+      <div class="option"><input type="radio" name="q9" id="q9d" value="d"><label for="q9d">When you next see the safeguarding officer at church</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q9','b','Safeguarding concerns involving harm to a child must be reported within 24 hours. Never delay — the safety of Jasmine and Arthur depends on a timely response.')">Check Answer</button>
+    <div class="feedback" id="q9-fb"></div>
+  </div>
+
+  <button class="submit-all-btn" onclick="showScore()">Submit Quiz & See My Score</button>
+
+  <div class="score-banner" id="score-banner">
+    <h3>Quiz Complete!</h3>
+    <span class="score-number" id="score-display">0/9</span>
+    <p id="score-msg"></p>
+  </div>
+
+  <div style="height: 20px;"></div>
+
+</div>
+
+<script>
+let scores = {};
+
+function checkRadio(qid, correct, explanation) {
+  const selected = document.querySelector(`input[name="${qid}"]:checked`);
+  if (!selected) { alert('Please select an answer first.'); return; }
+  const val = selected.value;
+  const fb = document.getElementById(`${qid}-fb`);
+  const options = document.querySelectorAll(`#${qid} .option`);
+  options.forEach(opt => {
+    const inp = opt.querySelector('input');
+    if (inp.value === correct) opt.classList.add('correct');
+    else if (inp.checked) opt.classList.add('wrong');
+    inp.disabled = true;
+  });
+  fb.className = `feedback show ${val === correct ? 'correct-fb' : 'wrong-fb'}`;
+  fb.textContent = (val === correct ? '✓ Correct. ' : '✗ Incorrect. ') + explanation;
+  document.querySelector(`#${qid} .check-btn`).disabled = true;
+  scores[qid] = val === correct ? 1 : 0;
+}
+
+function checkCheckbox(qid, correctArr, explanation) {
+  const checked = Array.from(document.querySelectorAll(`#${qid} input:checked`)).map(i => i.value);
+  if (checked.length === 0) { alert('Please select at least one answer.'); return; }
+  const correct = correctArr.slice().sort().join(',');
+  const given = checked.slice().sort().join(',');
+  const isCorrect = correct === given;
+  const fb = document.getElementById(`${qid}-fb`);
+  const options = document.querySelectorAll(`#${qid} .option`);
+  options.forEach(opt => {
+    const inp = opt.querySelector('input');
+    if (correctArr.includes(inp.value)) opt.classList.add('correct');
+    else if (inp.checked) opt.classList.add('wrong');
+    inp.disabled = true;
+  });
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.textContent = (isCorrect ? '✓ Correct. ' : '✗ Not quite. ') + explanation;
+  document.querySelector(`#${qid} .check-btn`).disabled = true;
+  scores[qid] = isCorrect ? 1 : 0;
+}
+
+function showScore() {
+  const total = Object.values(scores).reduce((a, b) => a + b, 0);
+  const out_of = 9;
+  const banner = document.getElementById('score-banner');
+  document.getElementById('score-display').textContent = `${total}/${out_of}`;
+  const msg = total === out_of ? 'Excellent work! You answered all questions correctly.' :
+              total >= 7 ? 'Well done! Review any questions you missed before moving on.' :
+              'Please review the scenarios and try again. Speak to your ministry leader if you have questions.';
+  document.getElementById('score-msg').textContent = msg;
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

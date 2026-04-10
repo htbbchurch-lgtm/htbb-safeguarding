@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTBB Safeguarding Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a3a4a;--teal:#2a7f6f;--teal-light:#3a9f8a;--teal-pale:#e8f5f2;
+  --gold:#c8963a;--gold-pale:#fdf6ec;--warm:#fafaf8;
+  --text:#2c3e35;--muted:#6b7c74;--border:#d4e4df;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);line-height:1.7}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+nav{background:var(--navy);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:'Lora',serif;font-size:15px;font-weight:600;color:#fff;letter-spacing:0.02em}
+.nav-links{display:flex;gap:6px}
+.nav-links a{font-size:12px;color:rgba(255,255,255,0.7);padding:6px 12px;border-radius:20px;transition:all 0.15s}
+.nav-links a:hover{background:rgba(255,255,255,0.1);color:#fff;text-decoration:none}
+.nav-links a.active{background:rgba(125,212,192,0.2);color:#7dd4c0}
+
+/* HERO */
+.hero{background:var(--navy);padding:72px 40px 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(42,127,111,0.12)}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-60px;width:260px;height:260px;border-radius:50%;background:rgba(200,150,58,0.07)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.8);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px;position:relative;z-index:1}
+.hero h1{font-family:'Lora',serif;font-size:clamp(28px,5vw,44px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;position:relative;z-index:1}
+.hero h1 em{color:#7dd4c0;font-style:normal}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 40px;font-weight:300;position:relative;z-index:1}
+.hero-stats{display:flex;justify-content:center;gap:48px;position:relative;z-index:1;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-n{font-family:'Lora',serif;font-size:36px;font-weight:700;color:#7dd4c0;display:block;line-height:1}
+.stat-l{font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px}
+.hero-cta{margin-top:40px;position:relative;z-index:1}
+.btn-primary{display:inline-block;background:var(--teal);color:#fff;font-size:14px;font-weight:500;padding:12px 28px;border-radius:100px;transition:background 0.15s}
+.btn-primary:hover{background:var(--teal-light);text-decoration:none;color:#fff}
+
+/* MAIN */
+.container{max-width:800px;margin:0 auto;padding:0 24px}
+
+/* WELCOME */
+.section{padding:56px 0 0}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.section h2{font-family:'Lora',serif;font-size:26px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.section p{font-size:15px;color:var(--muted);margin-bottom:14px}
+.callout{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:16px 20px;margin:24px 0}
+.callout p{color:var(--navy);font-size:14px;margin:0}
+.callout strong{color:var(--teal)}
+hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+
+/* MODULES */
+.modules-grid{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.module-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:flex-start;gap:16px;transition:border-color 0.2s,box-shadow 0.2s;text-decoration:none;color:inherit}
+.module-card:hover{border-color:var(--teal-light);box-shadow:0 2px 16px rgba(42,127,111,0.1);text-decoration:none;color:inherit}
+.mod-num{min-width:40px;height:40px;border-radius:50%;background:var(--teal-pale);color:var(--teal);font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Lora',serif}
+.mod-body{flex:1}
+.mod-body h3{font-size:15px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.mod-body p{font-size:13px;color:var(--muted);margin:0 0 8px}
+.mod-tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;padding:3px 9px;border-radius:100px;font-weight:500}
+.tag-v{background:#e8f0fe;color:#3c5a9a}
+.tag-q{background:var(--gold-pale);color:#8a5a10}
+.tag-r{background:var(--teal-pale);color:var(--teal)}
+.tag-d{background:#fbeaf0;color:#8a2a5a}
+.mod-arrow{color:var(--border);font-size:18px;margin-top:8px;transition:color 0.15s}
+.module-card:hover .mod-arrow{color:var(--teal)}
+
+/* EXPECT */
+.expect-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px}
+.expect-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 16px}
+.expect-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:12px}
+.expect-card h4{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.expect-card p{font-size:12.5px;color:var(--muted);margin:0}
+
+/* NOTICE */
+.notice{background:var(--gold-pale);border:1px solid #e8c97a;border-radius:12px;padding:20px 22px;display:flex;gap:14px;margin:40px 0}
+.notice-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.notice h4{font-size:14px;font-weight:500;color:#8a5a10;margin-bottom:5px}
+.notice p{font-size:13px;color:#7a5218;margin:0;line-height:1.6}
+
+/* CONTACT */
+.contact{background:var(--navy);border-radius:16px;padding:36px;text-align:center;margin:0 0 56px}
+.contact h3{font-family:'Lora',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:8px}
+.contact p{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:20px}
+.contact a{display:inline-block;background:var(--teal);color:#fff;padding:11px 26px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:background 0.15s}
+.contact a:hover{background:var(--teal-light)}
+
+@media(max-width:600px){
+  nav{padding:0 20px}
+  .hero{padding:52px 24px 48px}
+  .hero-stats{gap:28px}
+  .notice{flex-direction:column;gap:10px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">HTBB Safeguarding</div>
+  <div class="nav-links">
+    <a href="01_homepage.html" class="active">Home</a>
+    <a href="02_module1.html">Module 1</a>
+    <a href="03_module2.html">Module 2</a>
+    <a href="04_module3.html">Module 3</a>
+    <a href="05_module4.html">Module 4</a>
+    <a href="06_module5.html">Module 5</a>
+    <a href="07_module6.html">Module 6</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Holy Trinity Bukit Bintang</div>
+  <h1>HTBB<br><em>Safeguarding Training</em></h1>
+  <p class="hero-sub">Required training for all volunteers working with minors and vulnerable communities at HTBB.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-n">6</span><span class="stat-l">Modules</span></div>
+    <div class="stat"><span class="stat-n">3</span><span class="stat-l">Quizzes</span></div>
+    <div class="stat"><span class="stat-n">~90</span><span class="stat-l">Minutes</span></div>
+  </div>
+  <div class="hero-cta"><a class="btn-primary" href="02_module1.html">Start Training →</a></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="eyebrow">Welcome from HTBB</div>
+    <h2>Hi, and welcome! 👋</h2>
+    <p>We're so glad you're here serving with us at Holy Trinity Bukit Bintang. Whether you're volunteering with children's ministry, youth, or any team that works with vulnerable members of our community — this training is for you.</p>
+    <p>Safeguarding is not just a formality. It reflects our deep commitment as a church to protect and honour every person in our care. This course will equip you with the knowledge and confidence to serve safely and respond well.</p>
+    <div class="callout"><p><strong>This training is mandatory</strong> for all HTBB volunteers working with minors and vulnerable adults. Please complete all modules, quizzes, and the self-declaration form to be fully signed off.</p></div>
+  </div>
+
+  <hr>
+
+  <div class="section" style="padding-top:0">
+    <div class="eyebrow">Course overview</div>
+    <h2>What's covered</h2>
+    <div class="modules-grid">
+      <a class="module-card" href="02_module1.html">
+        <div class="mod-num">1</div>
+        <div class="mod-body"><h3>Introduction to Safeguarding</h3><p>What safeguarding means and why it matters in a church context.</p><div class="mod-tags"><span class="tag tag-v">Video</span><span class="tag tag-d">Reflection</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+      <a class="module-card" href="03_module2.html">
+        <div class="mod-num">2</div>
+        <div class="mod-body"><h3>Safeguarding and the Gospel</h3><p>Understanding safeguarding as an expression of our faith.</p><div class="mod-tags"><span class="tag tag-v">Video</span><span class="tag tag-d">Reflection</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+      <a class="module-card" href="04_module3.html">
+        <div class="mod-num">3</div>
+        <div class="mod-body"><h3>The Scope of Safeguarding</h3><p>Who safeguarding applies to, safeguarding officers, and HTBB's policies.</p><div class="mod-tags"><span class="tag tag-v">Video</span><span class="tag tag-r">Reading</span><span class="tag tag-d">Reflection</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+      <a class="module-card" href="05_module4.html">
+        <div class="mod-num">4</div>
+        <div class="mod-body"><h3>What is Abuse?</h3><p>Recognising different forms of abuse, confidentiality, and how to respond.</p><div class="mod-tags"><span class="tag tag-v">Video</span><span class="tag tag-d">Reflection</span><span class="tag tag-q">Quiz</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+      <a class="module-card" href="06_module5.html">
+        <div class="mod-num">5</div>
+        <div class="mod-body"><h3>Practical Safeguarding in Ministry</h3><p>Serving safely with children and vulnerable adults — real scenarios.</p><div class="mod-tags"><span class="tag tag-r">Reading</span><span class="tag tag-q">Quiz</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+      <a class="module-card" href="07_module6.html">
+        <div class="mod-num">6</div>
+        <div class="mod-body"><h3>Resources & Self-Declaration</h3><p>Required reading, key contacts, and your sign-off form.</p><div class="mod-tags"><span class="tag tag-r">Required Reading</span><span class="tag tag-q">Declaration Form</span></div></div>
+        <div class="mod-arrow">›</div>
+      </a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="section" style="padding-top:0">
+    <div class="eyebrow">Before you begin</div>
+    <h2>What to expect</h2>
+    <div class="expect-grid">
+      <div class="expect-card"><div class="expect-icon" style="background:#e8f0fe">🎬</div><h4>Watch the videos</h4><p>Each module starts with a video. Watch it fully before moving on.</p></div>
+      <div class="expect-card"><div class="expect-icon" style="background:#fbeaf0">💬</div><h4>Reflect & respond</h4><p>Some modules have short reflection prompts — take a moment to engage.</p></div>
+      <div class="expect-card"><div class="expect-icon" style="background:var(--gold-pale)">✅</div><h4>Complete the quizzes</h4><p>Scenario-based quizzes test your understanding. You can retake if needed.</p></div>
+      <div class="expect-card"><div class="expect-icon" style="background:var(--teal-pale)">📝</div><h4>Sign the declaration</h4><p>Submit a self-declaration form to confirm your completion.</p></div>
+    </div>
+  </div>
+
+  <div class="notice" style="margin-top:40px">
+    <div class="notice-icon">⚠️</div>
+    <div><h4>Please note</h4><p>You must complete <strong>all modules, quizzes, and the self-declaration form</strong> to be considered fully signed off. Partial completion will not count. If you have any difficulties, please contact the safeguarding team before your ministry start date.</p></div>
+  </div>
+
+  <div class="contact">
+    <h3>Questions or concerns?</h3>
+    <p>Reach out to our safeguarding team if you have any questions about this training.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <a href="tel:+60195556916" style="display:inline-block;background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:#fff;padding:11px 22px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none">📞 +6019-555 6916</a>
+      <a href="mailto:safeguarding@htbb.org" style="display:inline-block;background:var(--teal);color:#fff;padding:11px 26px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:background 0.15s">✉️ safeguarding@htbb.org</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

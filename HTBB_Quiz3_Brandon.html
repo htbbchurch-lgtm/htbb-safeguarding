@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz: Safeguarding Scenario 3 — Brandon</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a3a4a; --teal: #2a7f6f; --teal-light: #3a9f8a; --teal-pale: #e8f5f2;
+    --gold: #c8963a; --red-pale: #fef2f2; --red: #c0392b;
+    --green-pale: #f0faf5; --green: #1e7d52;
+    --warm-white: #fafaf8; --text: #2c3e35; --text-muted: #6b7c74; --border: #d4e4df;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text); line-height: 1.7; }
+  .header { background: var(--navy); padding: 36px 40px 32px; }
+  .header-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+  .header h1 { font-family: 'Lora', serif; font-size: clamp(20px, 4vw, 28px); font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .header p { color: rgba(255,255,255,0.65); font-size: 14px; }
+  .container { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+  .scenario-box { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px 30px; margin: 36px 0 32px; }
+  .scenario-box h2 { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .scenario-box h2::before { content: '📋'; font-size: 16px; }
+  .scenario-box p { font-size: 14.5px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.75; }
+  .scenario-box p:last-child { margin-bottom: 0; }
+  .scenario-box strong { color: var(--navy); font-weight: 600; }
+  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; padding-top: 8px; }
+  .section-title { font-family: 'Lora', serif; font-size: 19px; font-weight: 600; color: var(--navy); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .question-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+  .question-num { font-size: 11px; font-weight: 600; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .question-text { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 6px; }
+  .question-instruction { font-size: 12.5px; color: var(--text-muted); font-style: italic; margin-bottom: 16px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.15s; background: var(--warm-white); }
+  .option:hover { border-color: var(--teal-light); background: var(--teal-pale); }
+  .option input { margin-top: 3px; flex-shrink: 0; accent-color: var(--teal); width: 16px; height: 16px; }
+  .option label { font-size: 14px; color: var(--text); cursor: pointer; line-height: 1.6; }
+  .option.correct { border-color: var(--green); background: var(--green-pale); }
+  .option.wrong { border-color: var(--red); background: var(--red-pale); }
+  .option.correct label { color: var(--green); font-weight: 500; }
+  .option.wrong label { color: var(--red); }
+  .feedback { display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13.5px; line-height: 1.6; }
+  .feedback.show { display: block; }
+  .feedback.correct-fb { background: var(--green-pale); color: var(--green); border: 1px solid #a8d5b5; }
+  .feedback.wrong-fb { background: var(--red-pale); color: var(--red); border: 1px solid #f5b7b1; }
+  .check-btn { margin-top: 14px; background: var(--teal); color: #fff; border: none; padding: 9px 22px; border-radius: 100px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.15s; }
+  .check-btn:hover { background: var(--teal-light); }
+  .check-btn:disabled { background: #ccc; cursor: default; }
+  .score-banner { background: var(--navy); border-radius: 14px; padding: 28px; text-align: center; margin: 32px 0 52px; display: none; }
+  .score-banner.show { display: block; }
+  .score-banner h3 { font-family: 'Lora', serif; color: #fff; font-size: 22px; margin-bottom: 8px; }
+  .score-banner p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 16px; }
+  .score-number { font-family: 'Lora', serif; font-size: 48px; font-weight: 700; color: #7dd4c0; display: block; }
+  .submit-all-btn { background: var(--gold); color: #fff; border: none; padding: 12px 32px; border-radius: 100px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; margin: 8px 0 32px; display: block; width: 100%; transition: opacity 0.15s; }
+  .submit-all-btn:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">HTBB Safeguarding Training</div>
+  <h1>Safeguarding Scenario 3<br>Brandon — Vulnerable Adults</h1>
+  <p>Read the scenario carefully, then answer all 6 questions below.</p>
+</div>
+
+<div class="container">
+
+  <div class="scenario-box">
+    <h2>The Scenario</h2>
+    <p>Brandon has been attending <strong>HTBB regularly for the past six months</strong>. During this time, he has built connections with several staff members and church attendees and has shared personal challenges including the <strong>breakdown of his marriage, tensions with his former spouse, and financial difficulties</strong>.</p>
+    <p>Brandon typically attends Sunday services and sometimes stays through <strong>multiple services in the same day</strong>.</p>
+    <p>In recent weeks, several people have noticed changes in Brandon's behaviour. He appears <strong>more anxious, suspicious of others, and emotionally distressed</strong>. On several occasions he has shared that he has been experiencing <strong>thoughts about harming himself and feelings of hopelessness</strong>.</p>
+    <p>A friend of Brandon's, Tom, shared that Brandon <strong>recently left the hospital before completing a planned psychiatric admission</strong> that had been arranged to support his mental health.</p>
+    <p>During the same week, a church member reported that Brandon had sent <strong>messages that made them uncomfortable</strong>, including comments suggesting he could introduce women to him, along with messages referring to his <strong>distressing thoughts about harming himself</strong>.</p>
+    <p>Another church member reported feeling uncomfortable when Brandon <strong>expressed romantic interest and asked her out</strong>. Although she tried to end the conversation, Brandon <strong>followed her for a short distance</strong>, which made her feel uneasy.</p>
+    <p>Because of these concerns, a <strong>safeguarding report has been submitted to the Safeguarding Officers</strong>.</p>
+  </div>
+
+  <div class="section-label">Safeguarding Vulnerable Adults</div>
+  <div class="section-title">Questions 1–6</div>
+
+  <!-- Q1 -->
+  <div class="question-card" id="q1">
+    <div class="question-num">Question 1</div>
+    <div class="question-text">Why might Brandon be considered a <strong>vulnerable adult</strong>?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">He attends church regularly</label></div>
+      <div class="option"><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">He is going through a divorce</label></div>
+      <div class="option"><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">He appears to be experiencing mental health challenges and emotional distress</label></div>
+      <div class="option"><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">He stays through several services</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q1','c','A vulnerable adult is someone who may be less able to protect themselves from harm. Brandon\'s mental health challenges, emotional distress, and thoughts of self-harm make him vulnerable.')">Check Answer</button>
+    <div class="feedback" id="q1-fb"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="q2">
+    <div class="question-num">Question 2</div>
+    <div class="question-text">What safeguarding concerns are raised in this situation?</div>
+    <div class="question-instruction">Select ALL that apply</div>
+    <div class="options">
+      <div class="option"><input type="checkbox" id="q2a" value="a"><label for="q2a">Brandon expressing thoughts about harming himself</label></div>
+      <div class="option"><input type="checkbox" id="q2b" value="b"><label for="q2b">Messages that made church members uncomfortable</label></div>
+      <div class="option"><input type="checkbox" id="q2c" value="c"><label for="q2c">Following a church member after she tried to leave the conversation</label></div>
+      <div class="option"><input type="checkbox" id="q2d" value="d"><label for="q2d">Brandon attending multiple services</label></div>
+      <div class="option"><input type="checkbox" id="q2e" value="e"><label for="q2e">Leaving hospital before completing psychiatric care</label></div>
+    </div>
+    <button class="check-btn" onclick="checkCheckbox('q2',['a','b','c','e'],'There are multiple concerns: self-harm thoughts, uncomfortable messages to church members, following behaviour, and leaving hospital without completing care. Attending multiple services is not itself a concern.')">Check Answer</button>
+    <div class="feedback" id="q2-fb"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="q3">
+    <div class="question-num">Question 3</div>
+    <div class="question-text">Who may be at risk in this situation?</div>
+    <div class="question-instruction">Select ALL that apply</div>
+    <div class="options">
+      <div class="option"><input type="checkbox" id="q3a" value="a"><label for="q3a">Brandon himself</label></div>
+      <div class="option"><input type="checkbox" id="q3b" value="b"><label for="q3b">The woman who felt uncomfortable</label></div>
+      <div class="option"><input type="checkbox" id="q3c" value="c"><label for="q3c">Other church members interacting with Brandon</label></div>
+      <div class="option"><input type="checkbox" id="q3d" value="d"><label for="q3d">The safeguarding officers</label></div>
+      <div class="option"><input type="checkbox" id="q3e" value="e"><label for="q3e">The wider church community</label></div>
+    </div>
+    <button class="check-btn" onclick="checkCheckbox('q3',['a','b','c','e'],'Brandon is at risk of self-harm. The woman he followed, other interacting members, and the wider community are also at risk. Safeguarding officers, while responsible for managing the situation, are not themselves at risk in this context.')">Check Answer</button>
+    <div class="feedback" id="q3-fb"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="q4">
+    <div class="question-num">Question 4</div>
+    <div class="question-text">If Brandon begins relying heavily on one church member for emotional support, what is the most appropriate response?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">Continue supporting him privately</label></div>
+      <div class="option"><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">Avoid speaking with him</label></div>
+      <div class="option"><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">Ensure support involves ministry leaders or safeguarding officers</label></div>
+      <div class="option"><input type="radio" name="q4" id="q4d" value="d"><label for="q4d">Tell him to stop sharing his struggles</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q4','c','Support for vulnerable adults should never rest with one person alone. Involve ministry leaders and safeguarding officers to ensure healthy, accountable, and sustainable care.')">Check Answer</button>
+    <div class="feedback" id="q4-fb"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="q5">
+    <div class="question-num">Question 5</div>
+    <div class="question-text">If someone attending church raises safeguarding concerns, what should you do?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Ignore the situation</label></div>
+      <div class="option"><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Confront the person directly</label></div>
+      <div class="option"><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Discuss it widely with others</label></div>
+      <div class="option"><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">Inform a Safeguarding Officer, ministry leader, or HTBB staff member</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q5','d','Never ignore or handle safeguarding concerns alone. Always report to a Safeguarding Officer, ministry leader, or HTBB staff member who can assess and respond appropriately.')">Check Answer</button>
+    <div class="feedback" id="q5-fb"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="q6">
+    <div class="question-num">Question 6</div>
+    <div class="question-text">Which statement best reflects <strong>healthy safeguarding practice when supporting vulnerable adults</strong>?</div>
+    <div class="question-instruction">Select ONE answer</div>
+    <div class="options">
+      <div class="option"><input type="radio" name="q6" id="q6a" value="a"><label for="q6a">One church member should take responsibility for supporting the person</label></div>
+      <div class="option"><input type="radio" name="q6" id="q6b" value="b"><label for="q6b">Church members should avoid interacting with vulnerable adults</label></div>
+      <div class="option"><input type="radio" name="q6" id="q6c" value="c"><label for="q6c">Care should involve ministry leaders, safeguarding officers, and appropriate boundaries</label></div>
+      <div class="option"><input type="radio" name="q6" id="q6d" value="d"><label for="q6d">The situation should be handled privately</label></div>
+    </div>
+    <button class="check-btn" onclick="checkRadio('q6','c','Healthy safeguarding practice is always shared, transparent, and boundaried. Care for vulnerable adults must involve the right people and structures — never handled privately by one individual.')">Check Answer</button>
+    <div class="feedback" id="q6-fb"></div>
+  </div>
+
+  <button class="submit-all-btn" onclick="showScore()">Submit Quiz & See My Score</button>
+
+  <div class="score-banner" id="score-banner">
+    <h3>Quiz Complete!</h3>
+    <span class="score-number" id="score-display">0/6</span>
+    <p id="score-msg"></p>
+  </div>
+
+  <div style="height: 20px;"></div>
+</div>
+
+<script>
+let scores = {};
+function checkRadio(qid, correct, explanation) {
+  const selected = document.querySelector(`input[name="${qid}"]:checked`);
+  if (!selected) { alert('Please select an answer first.'); return; }
+  const val = selected.value;
+  const fb = document.getElementById(`${qid}-fb`);
+  document.querySelectorAll(`#${qid} .option`).forEach(opt => {
+    const inp = opt.querySelector('input');
+    if (inp.value === correct) opt.classList.add('correct');
+    else if (inp.checked) opt.classList.add('wrong');
+    inp.disabled = true;
+  });
+  fb.className = `feedback show ${val === correct ? 'correct-fb' : 'wrong-fb'}`;
+  fb.textContent = (val === correct ? '✓ Correct. ' : '✗ Incorrect. ') + explanation;
+  document.querySelector(`#${qid} .check-btn`).disabled = true;
+  scores[qid] = val === correct ? 1 : 0;
+}
+function checkCheckbox(qid, correctArr, explanation) {
+  const checked = Array.from(document.querySelectorAll(`#${qid} input:checked`)).map(i => i.value);
+  if (checked.length === 0) { alert('Please select at least one answer.'); return; }
+  const isCorrect = correctArr.slice().sort().join(',') === checked.slice().sort().join(',');
+  const fb = document.getElementById(`${qid}-fb`);
+  document.querySelectorAll(`#${qid} .option`).forEach(opt => {
+    const inp = opt.querySelector('input');
+    if (correctArr.includes(inp.value)) opt.classList.add('correct');
+    else if (inp.checked) opt.classList.add('wrong');
+    inp.disabled = true;
+  });
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.textContent = (isCorrect ? '✓ Correct. ' : '✗ Not quite. ') + explanation;
+  document.querySelector(`#${qid} .check-btn`).disabled = true;
+  scores[qid] = isCorrect ? 1 : 0;
+}
+function showScore() {
+  const total = Object.values(scores).reduce((a,b) => a+b, 0);
+  document.getElementById('score-display').textContent = `${total}/6`;
+  document.getElementById('score-msg').textContent = total === 6 ? 'Excellent! All answers correct.' : total >= 5 ? 'Well done — review any missed questions.' : 'Please review the module and try again.';
+  const b = document.getElementById('score-banner');
+  b.classList.add('show');
+  b.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
