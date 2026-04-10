@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 .content-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:16px}
-.content-box h3{font-family:'Lora',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:12px}
 .content-box p{font-size:14px;color:var(--muted);margin-bottom:10px;line-height:1.75}
 .content-box p:last-child{margin-bottom:0}
 .content-box ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin:8px 0 12px}
@@ -16,15 +15,14 @@
 .content-box li::before{content:'✓';position:absolute;left:12px;color:var(--teal);font-weight:600}
 .content-box li.avoid::before{content:'✗';color:#c0392b}
 .content-box li.avoid{background:#fef2f2}
-.practice-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#7dd4c0;font-size:13px;font-weight:600;margin-right:8px;flex-shrink:0;font-family:'Lora',serif;vertical-align:middle}
-.practice-title{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:10px;display:flex;align-items:center}
-.callout-teal{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--navy);line-height:1.6}
-.callout-gold{background:var(--gold-pale);border:1px solid #e8c97a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#7a5218;line-height:1.6}
-.callout-gold strong{color:#8a5a10}
-.principle-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
-.principle-emoji{font-size:20px;flex-shrink:0;margin-top:2px}
-.principle-body h4{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px}
-.principle-body p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.65}
+.pnum{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#7dd4c0;font-size:13px;font-weight:600;margin-right:8px;flex-shrink:0;font-family:'Lora',serif;vertical-align:middle}
+.ptitle{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:12px;display:flex;align-items:center}
+.callout-t{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--navy);line-height:1.6}
+.callout-g{background:var(--gold-pale);border:1px solid #e8c97a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#7a5218;line-height:1.6}
+.callout-g strong{color:#8a5a10}
+.principle-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px}
+.principle-header{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:8px}
+.part-banner{background:var(--navy);border-radius:12px;padding:20px 24px;margin-bottom:20px}
 </style>
 </head>
 <body>
@@ -52,18 +50,18 @@
     <div class="meta-item">📝 Quiz: Scenario 3 — Brandon</div>
   </div>
 </div>
+
 <div class="container" style="padding-top:32px">
 
-  <div style="background:var(--navy);border-radius:12px;padding:20px 24px;margin-bottom:20px">
+  <div class="part-banner">
     <div style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7dd4c0;margin-bottom:6px">Part B</div>
     <h2 style="font-family:'Lora',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:4px">Safeguarding Vulnerable Adults</h2>
-    <p style="font-size:13px;color:rgba(255,255,255,0.65)">Key principles and practices for ministry with vulnerable adults.</p>
   </div>
 
   <!-- WHO ARE VULNERABLE ADULTS -->
   <div class="content-box">
-    <h3>Who Are Vulnerable Adults?</h3>
-    <p>A <strong style="color:var(--navy)">vulnerable adult</strong>, or an adult with safeguarding needs, refers to someone who may need additional protection because they may be less able to safeguard themselves from harm, abuse, or exploitation.</p>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Who Are Vulnerable Adults?</div>
+    <p>A vulnerable adult, or an adult with safeguarding needs, refers to someone who may need additional protection because they may be less able to safeguard themselves from harm, abuse, or exploitation.</p>
     <p>This may include individuals with:</p>
     <ul>
       <li>Learning disabilities</li>
@@ -73,77 +71,107 @@
       <li>Physical disabilities or long-term illness</li>
       <li>Reduced capacity to make safe decisions</li>
     </ul>
-    <p>Some individuals may only be vulnerable <strong style="color:var(--navy)">in certain situations or seasons of life</strong>, such as during grief, financial hardship, illness, or social isolation.</p>
-    <div class="callout-teal">The goal is not to remove a person's independence, but to ensure they are <strong>supported, safe, and able to participate meaningfully in church life</strong>.</div>
+    <p>Some individuals may only be vulnerable in certain situations or seasons of life, such as during grief, financial hardship, illness, or social isolation.</p>
+    <p>Safeguarding vulnerable adults involves respecting their dignity and independence, while also taking appropriate steps to protect them from harm or exploitation.</p>
+    <div class="callout-t">The goal is not to remove a person's independence, but to ensure they are supported, safe, and able to participate meaningfully in church life.</div>
   </div>
 
   <!-- KEY PRINCIPLES -->
   <div class="content-box">
-    <h3>Key Principles in Safeguarding Vulnerable Adults</h3>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:12px">Key Principles in Safeguarding Vulnerable Adults</div>
     <p>When engaging with vulnerable adults in ministry, these principles guide how we serve with care, wisdom, and responsibility:</p>
 
     <div class="principle-card">
-      <div class="principle-emoji">1️⃣</div>
-      <div class="principle-body">
-        <h4>Empowerment</h4>
-        <p>Where possible, individuals should be supported to make their own decisions and express their wishes. Listen carefully to their voice, respect their choices, and avoid taking over decisions unnecessarily. Safeguarding is not about control, but about ensuring safety while preserving dignity and autonomy.</p>
-      </div>
+      <div class="principle-header">1️⃣ Empowerment</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.7">Where possible, individuals should be supported to make their own decisions and express their wishes.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:6px;line-height:1.7">This means:</p>
+      <ul>
+        <li>Listening carefully to their voice</li>
+        <li>Respecting their choices</li>
+        <li>Avoiding taking over decisions unnecessarily</li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.7">Safeguarding is not about control, but about ensuring safety while preserving dignity and autonomy.</p>
     </div>
 
     <div class="principle-card">
-      <div class="principle-emoji">2️⃣</div>
-      <div class="principle-body">
-        <h4>Prevention</h4>
-        <p>It is always better to prevent harm before it happens. Maintain clear and healthy ministry boundaries, avoid situations where unhealthy dependency may develop, and ensure transparency in pastoral relationships.</p>
-      </div>
+      <div class="principle-header">2️⃣ Prevention</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.7">It is always better to prevent harm before it happens.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:6px;line-height:1.7">This includes:</p>
+      <ul>
+        <li>Maintaining clear and healthy ministry boundaries</li>
+        <li>Avoiding situations where unhealthy dependency may develop</li>
+        <li>Ensuring transparency in pastoral relationships</li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.7">Simple, consistent practices help reduce risk and protect both the individual and the volunteer.</p>
     </div>
 
     <div class="principle-card">
-      <div class="principle-emoji">3️⃣</div>
-      <div class="principle-body">
-        <h4>Proportionality</h4>
-        <p>Safeguarding responses should be appropriate to the level of risk involved. Any concern involving harm, abuse, or exploitation must always be reported. When in doubt, always seek guidance from a Safeguarding Officer or ministry leader.</p>
-      </div>
+      <div class="principle-header">3️⃣ Proportionality</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.7">Safeguarding responses should be appropriate to the level of risk involved.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:6px;line-height:1.7">Not every concern requires the same level of action. However:</p>
+      <ul>
+        <li>Any concern involving harm, abuse, or exploitation must always be reported</li>
+        <li>Volunteers should never attempt to manage serious concerns on their own</li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.7">When in doubt, always seek guidance from a Safeguarding Officer or ministry leader.</p>
     </div>
 
     <div class="principle-card">
-      <div class="principle-emoji">4️⃣</div>
-      <div class="principle-body">
-        <h4>Protection</h4>
-        <p>Extra care should be given to individuals who may be more vulnerable to harm or exploitation — those with limited support networks, those who struggle to advocate for themselves, or those experiencing crisis, instability, or emotional distress.</p>
-      </div>
+      <div class="principle-header">4️⃣ Protection</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.7">Extra care should be given to individuals who may be more vulnerable to harm or exploitation.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:6px;line-height:1.7">This may include:</p>
+      <ul>
+        <li>Those with limited support networks</li>
+        <li>Those who struggle to advocate for themselves</li>
+        <li>Those experiencing crisis, instability, or emotional distress</li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.7">Safeguarding means ensuring that people are not left in situations where they could be harmed, even unintentionally.</p>
     </div>
 
     <div class="principle-card">
-      <div class="principle-emoji">5️⃣</div>
-      <div class="principle-body">
-        <h4>Partnership</h4>
-        <p>Safeguarding is never meant to be done alone. Work together with ministry leaders, the safeguarding team, families or carers (where appropriate), and relevant professionals or organisations when needed.</p>
-      </div>
+      <div class="principle-header">5️⃣ Partnership</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.7">Safeguarding is never meant to be done alone.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:6px;line-height:1.7">When supporting vulnerable adults, we should work together with:</p>
+      <ul>
+        <li>Ministry leaders</li>
+        <li>The safeguarding team</li>
+        <li>Families or carers (where appropriate)</li>
+        <li>Relevant professionals or organisations when needed</li>
+      </ul>
+      <p style="font-size:14px;color:var(--muted);margin:0;line-height:1.7">Shared awareness and accountability help provide safer, healthier care — for both the individual and the volunteer.</p>
     </div>
   </div>
 
   <!-- PRACTICAL SAFEGUARDING -->
-  <div class="content-box">
-    <h3>Practical Safeguarding in Ministry</h3>
-    <p>Serving vulnerable adults often involves pastoral care, practical support, and friendship. These are important expressions of Christian love, but they must always be carried out within <strong style="color:var(--navy)">healthy safeguarding boundaries</strong>.</p>
-  </div>
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin:20px 0 12px">Practical Safeguarding in Ministry</div>
 
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">1</span>Avoid Dependency Relationships</div>
-    <p>Pastoral care should never rely on a single individual. When one person becomes the only source of support, it can lead to unhealthy emotional dependence, blurred boundaries, and increased safeguarding risks.</p>
-    <p>Instead, support should involve a wider network such as:</p>
+    <p>Serving vulnerable adults often involves pastoral care, practical support, and friendship. These are important expressions of Christian love, but they must always be carried out within healthy safeguarding boundaries.</p>
+  </div>
+
+  <!-- PRACTICE 1 -->
+  <div class="content-box">
+    <div class="ptitle"><span class="pnum">1</span>Avoid Dependency Relationships</div>
+    <p>Pastoral care should never rely on a single individual.</p>
+    <p>When one person becomes the only source of support, it can lead to:</p>
+    <ul>
+      <li>Unhealthy emotional dependence</li>
+      <li>Blurred boundaries</li>
+      <li>Increased safeguarding risks</li>
+    </ul>
+    <p>Instead, support should involve a wider network, such as:</p>
     <ul>
       <li>Ministry teams or connect group leaders</li>
       <li>Safeguarding officers</li>
       <li>Pastoral staff</li>
       <li>Appropriate external professionals where necessary</li>
     </ul>
-    <div class="callout-teal">Where possible, ensure that <strong>others are aware of and involved</strong> in the care being provided. This creates accountability and ensures more sustainable, healthy support.</div>
+    <div class="callout-t">Where possible, ensure that others are aware of and involved in the care being provided. This creates accountability and ensures more sustainable, healthy support.</div>
   </div>
 
+  <!-- PRACTICE 2 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">2</span>Maintain Healthy Boundaries</div>
+    <div class="ptitle"><span class="pnum">2</span>Maintain Healthy Boundaries</div>
     <p>Clear and consistent boundaries protect both vulnerable individuals and those serving in ministry.</p>
     <p>Volunteers should avoid:</p>
     <ul>
@@ -153,12 +181,14 @@
       <li class="avoid">Offering regular one-to-one counselling without oversight</li>
       <li class="avoid">Meeting vulnerable adults in isolated or private settings without informing ministry leaders</li>
     </ul>
-    <div class="callout-gold"><strong>Important:</strong> If someone requires significant emotional, financial, or practical support, this should be addressed through appropriate church structures or external services — not handled alone.</div>
+    <div class="callout-g"><strong>Important:</strong> If someone requires significant emotional, financial, or practical support, this should be addressed through appropriate church structures or external services — not handled alone.</div>
   </div>
 
+  <!-- PRACTICE 3 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">3</span>Be Aware of Individuals Who May Pose a Risk</div>
-    <p>Churches are open and welcoming communities, but there may be situations where individuals present safeguarding risks. In rare cases, someone attending church may:</p>
+    <div class="ptitle"><span class="pnum">3</span>Be Aware of Individuals Who May Pose a Risk</div>
+    <p>Churches are open and welcoming communities, but there may be situations where individuals present safeguarding risks.</p>
+    <p>In rare cases, someone attending church may:</p>
     <ul>
       <li class="avoid">Have a known history of abuse</li>
       <li class="avoid">Be under investigation</li>
@@ -166,17 +196,24 @@
       <li class="avoid">Display behaviour that raises concern</li>
     </ul>
     <div style="background:var(--navy);border-radius:8px;padding:14px 16px;margin-top:12px">
-      <p style="font-size:13.5px;color:rgba(255,255,255,0.85);margin-bottom:8px;line-height:1.6">If you become aware of such situations:</p>
-      <p style="font-size:13.5px;color:#7dd4c0;margin-bottom:4px;font-weight:500">➡️ Do not attempt to handle it alone</p>
-      <p style="font-size:13.5px;color:#7dd4c0;font-weight:500;margin:0">➡️ Inform a Safeguarding Officer, ministry leader, or HTBB staff member immediately</p>
+      <p style="font-size:13.5px;color:rgba(255,255,255,0.85);margin-bottom:10px;line-height:1.6">If you become aware of such situations:</p>
+      <p style="font-size:13.5px;color:#7dd4c0;font-weight:500;margin-bottom:6px">➡️ Do not attempt to handle it alone</p>
+      <p style="font-size:13.5px;color:#7dd4c0;font-weight:500;margin-bottom:10px">➡️ Inform a Safeguarding Officer, ministry leader, or HTBB staff member immediately</p>
+      <p style="font-size:13px;color:rgba(255,255,255,0.65);margin:0;line-height:1.6">The safeguarding team will assess the situation and determine appropriate next steps. In some cases, specific measures may be put in place to ensure the safety of vulnerable individuals.</p>
     </div>
+  </div>
+
+  <!-- SCENARIO INTRO -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Scenario 3 — Brandon</div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.75">The scenario will help you apply the safeguarding principles discussed in this module and consider how to respond appropriately in a real ministry situation.</p>
   </div>
 
   <!-- QUIZ -->
   <div class="quiz-box">
     <div class="quiz-label">Quiz — Scenario 3</div>
     <h3>Safeguarding Scenario 3 — Brandon</h3>
-    <p>Apply the principles from Part B. Read the scenario about Brandon carefully and answer all 6 questions.</p>
+    <p>Read the scenario carefully and answer all 6 questions. You can retake the quiz if needed.</p>
     <p style="font-size:13px;color:var(--muted);font-style:italic;margin-top:6px">This scenario is fictional and created for the purpose of Safeguarding Training.</p>
     <div class="quiz-meta">
       <span>6 questions</span>

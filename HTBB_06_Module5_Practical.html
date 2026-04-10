@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="shared.css">
 <style>
 .content-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:16px}
-.content-box h3{font-family:'Lora',serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:12px}
 .content-box p{font-size:14px;color:var(--muted);margin-bottom:10px;line-height:1.75}
 .content-box p:last-child{margin-bottom:0}
 .content-box ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin:8px 0 12px}
@@ -16,11 +15,12 @@
 .content-box li::before{content:'✓';position:absolute;left:12px;color:var(--teal);font-weight:600}
 .content-box li.avoid::before{content:'✗';color:#c0392b}
 .content-box li.avoid{background:#fef2f2}
-.practice-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#7dd4c0;font-size:13px;font-weight:600;margin-right:8px;flex-shrink:0;font-family:'Lora',serif;vertical-align:middle}
-.practice-title{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:10px;display:flex;align-items:center}
-.callout-teal{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--navy);line-height:1.6}
-.callout-gold{background:var(--gold-pale);border:1px solid #e8c97a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#7a5218;line-height:1.6}
-.callout-gold strong{color:#8a5a10}
+.pnum{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#7dd4c0;font-size:13px;font-weight:600;margin-right:8px;flex-shrink:0;font-family:'Lora',serif;vertical-align:middle}
+.ptitle{font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:12px;display:flex;align-items:center}
+.callout-t{background:var(--teal-pale);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13.5px;color:var(--navy);line-height:1.6}
+.callout-g{background:var(--gold-pale);border:1px solid #e8c97a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#7a5218;line-height:1.6}
+.callout-g strong{color:#8a5a10}
+.part-banner{background:var(--navy);border-radius:12px;padding:20px 24px;margin-bottom:20px}
 </style>
 </head>
 <body>
@@ -48,24 +48,25 @@
     <div class="meta-item">📝 Quiz: Scenario 2 — Daniel</div>
   </div>
 </div>
+
 <div class="container" style="padding-top:32px">
 
   <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:24px 26px;margin-bottom:20px">
     <div style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Practical Safeguarding in Ministry</div>
     <h2 style="font-family:'Lora',serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:12px">Serving Safely with Children and Vulnerable Adults</h2>
-    <p style="font-size:14.5px;color:var(--muted);margin-bottom:10px;line-height:1.75">Safeguarding is not only about responding to abuse when it occurs. It is also about <strong style="color:var(--navy)">creating ministry environments that reduce the risk of harm</strong> and promote safety for everyone.</p>
-    <p style="font-size:14.5px;color:var(--muted);line-height:1.75">The following guidelines help ensure that ministry with children and vulnerable adults is conducted in ways that are <strong style="color:var(--navy)">safe, transparent, and accountable</strong>.</p>
+    <p style="font-size:14.5px;color:var(--muted);margin-bottom:10px;line-height:1.75">Safeguarding is not only about responding to abuse when it occurs. It is also about creating ministry environments that reduce the risk of harm and promote safety for everyone.</p>
+    <p style="font-size:14.5px;color:var(--muted);line-height:1.75">The following guidelines help ensure that ministry with children and vulnerable adults is conducted in ways that are safe, transparent, and accountable.</p>
   </div>
 
-  <div style="background:var(--navy);border-radius:12px;padding:20px 24px;margin-bottom:20px">
+  <div class="part-banner">
     <div style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7dd4c0;margin-bottom:6px">Part A</div>
     <h2 style="font-family:'Lora',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:4px">Practical Safeguarding with Children</h2>
-    <p style="font-size:13px;color:rgba(255,255,255,0.65)">Key principles and practices for ministry with children.</p>
   </div>
 
+  <!-- KEY PRINCIPLES -->
   <div class="content-box">
-    <h3>Key Principles</h3>
-    <p>Children are a particularly vulnerable group because they depend on adults for care, guidance, and protection. As ministry leaders and volunteers, we are responsible for ensuring that church environments are <strong style="color:var(--navy)">safe, nurturing, and respectful</strong>.</p>
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Key Principles</div>
+    <p>Children are a particularly vulnerable group because they depend on adults for care, guidance, and protection. As ministry leaders and volunteers, we are responsible for ensuring that church environments are safe, nurturing, and respectful.</p>
     <p>When serving children:</p>
     <ul>
       <li><strong style="color:var(--navy)">Always prioritise the child's safety and wellbeing.</strong> Children's physical, emotional, and spiritual safety must always come before ministry convenience.</li>
@@ -75,34 +76,53 @@
     </ul>
   </div>
 
+  <!-- KEY PRACTICES LABEL -->
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin:20px 0 12px">Key Practices</div>
+
+  <!-- PRACTICE 1 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">1</span>Never Be Alone With a Child</div>
-    <p>There should always be <strong style="color:var(--navy)">at least two approved volunteers present</strong> when children are in a ministry space. This ensures that children are protected, volunteers are accountable, and situations are less likely to be misunderstood.</p>
+    <div class="ptitle"><span class="pnum">1</span>Never Be Alone With a Child</div>
+    <p>There should always be at least two approved volunteers present when children are in a ministry space.</p>
+    <p>This ensures that:</p>
+    <ul>
+      <li>Children are protected</li>
+      <li>Volunteers are accountable</li>
+      <li>Situations are less likely to be misunderstood</li>
+    </ul>
     <p>If an unexpected situation occurs where you are temporarily alone with a child:</p>
     <ul>
-      <li>Ensure the <strong style="color:var(--navy)">door remains open</strong></li>
-      <li>Maintain a <strong style="color:var(--navy)">clear line of sight</strong> from others</li>
-      <li>Move to a <strong style="color:var(--navy)">public or visible space</strong> where possible</li>
+      <li>Ensure the door remains open</li>
+      <li>Maintain a clear line of sight from others</li>
+      <li>Move to a public or visible space where possible</li>
     </ul>
-    <div class="callout-gold"><strong>Important:</strong> Volunteers should never intentionally arrange to meet a child alone.</div>
+    <div class="callout-g"><strong>Important:</strong> Volunteers should never intentionally arrange to meet a child alone.</div>
   </div>
 
+  <!-- PRACTICE 2 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">2</span>Open and Visible Environments</div>
-    <p>Children's ministry should always take place in <strong style="color:var(--navy)">open and observable environments</strong>. Classrooms and ministry spaces should have see-through windows where possible, or have doors kept open during ministry time.</p>
-    <div class="callout-teal">This allows parents, ministry leaders, and other volunteers to observe activities and helps create a culture of <strong>openness and accountability</strong>. Open environments protect both children and volunteers.</div>
+    <div class="ptitle"><span class="pnum">2</span>Open and Visible Environments</div>
+    <p>Children's ministry should always take place in open and observable environments.</p>
+    <p>Classrooms and ministry spaces should:</p>
+    <ul>
+      <li>Have see-through windows where possible</li>
+      <li>Or have doors kept open during ministry time</li>
+    </ul>
+    <p>This allows parents, ministry leaders, and other volunteers to observe activities and helps create a culture of openness and accountability.</p>
+    <div class="callout-t">Open environments protect both children and volunteers.</div>
   </div>
 
+  <!-- PRACTICE 3 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">3</span>Appropriate Physical Contact</div>
-    <p>Physical contact should always be <strong style="color:var(--navy)">appropriate, brief, and clearly non-intrusive</strong>.</p>
-    <p>Acceptable forms of contact:</p>
+    <div class="ptitle"><span class="pnum">3</span>Appropriate Physical Contact</div>
+    <p>Children often express affection naturally, and appropriate physical interaction can be part of a warm and supportive ministry environment. However, physical contact should always be appropriate, brief, and clearly non-intrusive.</p>
+    <p>Acceptable forms of contact may include:</p>
     <ul>
       <li>High fives</li>
       <li>Handshakes</li>
       <li>Fist bumps</li>
       <li>Brief side hugs initiated by the child</li>
     </ul>
+    <p>Volunteers should avoid physical contact that could be misinterpreted.</p>
     <p>Avoid:</p>
     <ul>
       <li class="avoid">Lengthy or full hugs</li>
@@ -112,25 +132,41 @@
       <li class="avoid">Holding children unnecessarily</li>
       <li class="avoid">Assisting children in the restroom</li>
     </ul>
-    <div class="callout-teal">If a younger child needs assistance, <strong>another volunteer should be present</strong> and parents should be informed.</div>
+    <p>If a younger child needs assistance, another volunteer should be present, and parents should be informed.</p>
+    <div class="callout-t">These guidelines help maintain appropriate boundaries and protect both the child and the volunteer.</div>
   </div>
 
+  <!-- PRACTICE 4 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">4</span>Communication Boundaries</div>
-    <p>Digital communication and social media can present safeguarding risks if not handled carefully.</p>
-    <p>Volunteers must <strong style="color:#c0392b">not</strong>:</p>
+    <div class="ptitle"><span class="pnum">4</span>Communication Boundaries</div>
+    <p>Digital communication and social media can create opportunities for connection but also present safeguarding risks if not handled carefully.</p>
+    <p>Volunteers must not:</p>
     <ul>
       <li class="avoid">Message children privately</li>
       <li class="avoid">Interact one-on-one with children on social media</li>
       <li class="avoid">Exchange personal contact details with children</li>
       <li class="avoid">Share personal photos, videos, or content with children</li>
     </ul>
-    <p>Communication with children should always take place through official ministry channels, in group chats where other leaders are present, and with parental awareness where appropriate.</p>
+    <p>Communication with children should always take place:</p>
+    <ul>
+      <li>Through official ministry channels</li>
+      <li>In group chats where other leaders are present</li>
+      <li>With parental awareness where appropriate</li>
+    </ul>
+    <div class="callout-t">These guidelines help prevent inappropriate relationships or misunderstandings.</div>
   </div>
 
+  <!-- PRACTICE 5 -->
   <div class="content-box">
-    <div class="practice-title"><span class="practice-num">5</span>Ministry Concern Report</div>
-    <p>If a child becomes injured, unwell, or involved in an incident during ministry, volunteers should inform the ministry leader or service leader immediately, complete a Ministry Concern Report, and ensure the child's parents or guardians are informed.</p>
+    <div class="ptitle"><span class="pnum">5</span>Ministry Concern Report</div>
+    <p>If a child becomes injured, unwell, or involved in an incident during ministry, it is important that this is handled openly and responsibly.</p>
+    <p>Volunteers should:</p>
+    <ul>
+      <li>Inform the ministry leader or service leader immediately</li>
+      <li>Complete a Ministry Concern Report</li>
+      <li>Ensure the child's parents or guardians are informed</li>
+    </ul>
+    <p>Ministry Concern Report and Safeguarding Incident Reports are different.</p>
     <div style="background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:14px">
       <div style="display:grid;grid-template-columns:1fr 1fr">
         <div style="padding:14px 16px;border-right:1px solid var(--border)">
@@ -145,10 +181,18 @@
     </div>
   </div>
 
+  <!-- SCENARIO INTRO -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">Scenario 2 — Daniel</div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.75">Safeguarding often involves recognising situations where a child may be at risk or needs additional care.</p>
+    <p style="font-size:14px;color:var(--muted);line-height:1.75">In the following scenario, consider how the principles of safe boundaries, appropriate response, and reporting concerns apply.</p>
+  </div>
+
+  <!-- QUIZ -->
   <div class="quiz-box">
     <div class="quiz-label">Quiz — Scenario 2</div>
     <h3>Safeguarding Scenario 2 — Daniel</h3>
-    <p>Apply the principles from Part A. Read the scenario about Daniel carefully and answer all 5 questions.</p>
+    <p>Read the scenario carefully and answer all 5 questions. You can retake the quiz if needed.</p>
     <p style="font-size:13px;color:var(--muted);font-style:italic;margin-top:6px">This scenario is fictional and created for the purpose of Safeguarding Training.</p>
     <div class="quiz-meta">
       <span>5 questions</span>
